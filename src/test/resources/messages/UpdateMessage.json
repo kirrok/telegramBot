@@ -1,0 +1,4 @@
+{"ok":true,"result":[{"update_id":488993880,
+  "message":{"message_id":11,"from":{"id":264555647,"first_name":"Kirill","last_name":"Sobolev"},"chat":{"id":264555647,"first_name":"Kirill","last_name":"Sobolev","type":"private"},"date":1484659373,"text":"dwd"}},{"update_id":488993881,
+  "message":{"message_id":12,"from":{"id":264555647,"first_name":"Kirill","last_name":"Sobolev"},"chat":{"id":264555647,"first_name":"Kirill","last_name":"Sobolev","type":"private"},"date":1484659373,"text":"wdw"}},{"update_id":488993882,
+  "message":{"message_id":13,"from":{"id":264555647,"first_name":"Kirill","last_name":"Sobolev"},"chat":{"id":264555647,"first_name":"Kirill","last_name":"Sobolev","type":"private"},"date":1484661187,"text":"<script></script>"}}]}
