@@ -1,15 +1,18 @@
-import message.UpdateMessage;
+package sobolev.mechanics;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import sobolev.BotSession;
+import sobolev.message.UpdateMessage;
+import sobolev.utils.TimeHelper;
 
 import java.util.ArrayList;
 import java.util.Queue;
 
-import static java.lang.Thread.sleep;
-
 /**
  * Created by kirrok on 17.01.17.
  */
+
 public class Mechanics implements Runnable {
     private static final Logger LOGGER = LogManager.getLogger(Mechanics.class);
     private final ArrayList<BotSession> allSessions;
@@ -32,7 +35,7 @@ public class Mechanics implements Runnable {
         }
     }
 
-    public void step() {
+    private void step() {
         for (BotSession session : allSessions) {
             final Queue<UpdateMessage> updates = session.getUpdates();
             for (UpdateMessage update : updates) {

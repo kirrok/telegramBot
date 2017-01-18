@@ -1,4 +1,6 @@
-import message.UpdateMessage;
+package sobolev;
+
+import sobolev.message.UpdateMessage;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;

@@ -1,4 +1,4 @@
-package message;
+package sobolev.message;
 
 /**
  * Created by kirrok on 18.01.17.

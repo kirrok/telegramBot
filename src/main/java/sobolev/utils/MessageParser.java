@@ -1,11 +1,8 @@
-import com.fasterxml.jackson.databind.JsonMappingException;
+package sobolev.utils;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-import message.Message;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import sun.rmi.runtime.Log;
-
-import java.io.IOException;
 
 /**
  * Created by kirrok on 17.01.17.

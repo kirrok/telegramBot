@@ -1,8 +1,8 @@
 package MessageTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import message.SuccessUpdateMessage;
 import org.junit.Test;
+import sobolev.message.SuccessUpdateMessage;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -23,6 +23,9 @@ public class TestUpdateMessage {
 
         final StringWriter json = new StringWriter();
         mapper.writeValue(json, message);
+
+//        System.out.println(json.toString());
+//        System.out.println((new String(Files.readAllBytes(Paths.get("src/test/resources/messages/ExpectedUpdateMessage.json")))));
 
         assert (json.toString().equals(new String(Files.readAllBytes(Paths.get("src/test/resources/messages/ExpectedUpdateMessage.json")))));
     }

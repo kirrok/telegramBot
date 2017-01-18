@@ -1,4 +1,4 @@
-package message;
+package sobolev.message;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

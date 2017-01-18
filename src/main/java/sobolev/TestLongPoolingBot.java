@@ -1,5 +1,10 @@
+package sobolev;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import sobolev.mechanics.Mechanics;
+import sobolev.mechanics.UpdatesDownloader;
+import sobolev.service.RemotePointService;
 
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
@@ -17,15 +22,13 @@ public class TestLongPoolingBot {
 
     private final ArrayList<BotSession> allSessions = new ArrayList<>();
     private final String token;
-    private final BotConfig botConfig;
     private final Executor executor;
 
 
-    public TestLongPoolingBot(BotConfig botConfig) {
-        this.botConfig = botConfig;
+    public TestLongPoolingBot(DefaultBotConfig botConfig) {
         this.token = botConfig.getToken();
         this.executor = Executors.newFixedThreadPool(botConfig.getThreadNumber());
-        this.remotePointService = new RemotePointService();
+        this.remotePointService = new RemotePointService(botConfig.getBaseUrl(), botConfig.getToken());
         this.updatesDownloader = new UpdatesDownloader(remotePointService, allSessions);
         this.mechanic = new Mechanics(allSessions);
 

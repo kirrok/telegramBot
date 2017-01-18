@@ -1,15 +1,19 @@
+package sobolev.mechanics;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-import message.SuccessUpdateMessage;
-import message.UpdateMessage;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import sobolev.BotSession;
+import sobolev.message.SuccessUpdateMessage;
+import sobolev.message.UpdateMessage;
+import sobolev.service.RemotePointService;
+import sobolev.utils.MessageParser;
+import sobolev.utils.TimeHelper;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import static java.lang.Thread.sleep;
 
 /**
  * Created by kirrok on 17.01.17.
@@ -64,12 +68,12 @@ public class UpdatesDownloader implements Runnable {
             successUpdateMessage = new ObjectMapper().
                     readValue(remotePointService.sendGet(GET_UPDATES, keyToValue), SuccessUpdateMessage.class);
         } catch (IOException e) {
-            LOGGER.info("Errow while getUpdates , {}", e);
+            LOGGER.info("Errow while getResult , {}", e);
         }
         int maxUpdateId = 0;
 
         if (successUpdateMessage != null) {
-            final List<UpdateMessage> updates = successUpdateMessage.getUpdates();
+            final List<UpdateMessage> updates = successUpdateMessage.getResult();
 
             for (UpdateMessage update : updates) {
                 final int currentUpdateId = update.getUpdateId();

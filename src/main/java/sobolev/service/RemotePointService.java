@@ -1,11 +1,13 @@
-import com.sun.javafx.fxml.builder.URLBuilder;
+package sobolev.service;
+
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -16,10 +18,12 @@ import java.util.HashMap;
  */
 
 public class RemotePointService {
+    private final Logger LOGGER = LogManager.getLogger(RemotePointService.class);
+    private final String REMOTE_URL;
 
-    private static String token = "bot249321483:AAGeX2H9tgtnSQ3HjAtn__RTB6ftPl0lPYI/";
-    private static final Logger LOGGER = LogManager.getLogger(RemotePointService.class);
-    private static final String HOST_NAME = "api.telegram.org/";
+    public RemotePointService(String baseUrl, String token) {
+        REMOTE_URL = baseUrl + token;
+    }
 
     public String sendGet(String methodName) throws IOException {
         return sendGet(methodName, null);
@@ -28,8 +32,8 @@ public class RemotePointService {
     public String sendGet(String methodName, HashMap<String, String> parametersToValues) throws IOException {
         URI uri;
         try {
-            URIBuilder uriBuilder = new URIBuilder();
-            uriBuilder.setScheme("https").setHost(HOST_NAME + token).setPath(methodName).build();
+            final URIBuilder uriBuilder = new URIBuilder();
+            uriBuilder.setScheme("https").setHost(REMOTE_URL).setPath(methodName).build();
             if (parametersToValues != null) {
                 parametersToValues.forEach(uriBuilder::setParameter);
             }
