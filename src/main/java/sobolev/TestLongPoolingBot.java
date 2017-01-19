@@ -29,8 +29,8 @@ public class TestLongPoolingBot {
         this.token = botConfig.getToken();
         this.executor = Executors.newFixedThreadPool(botConfig.getThreadNumber());
         this.remotePointService = new RemotePointService(botConfig.getBaseUrl(), botConfig.getToken());
-        this.updatesDownloader = new UpdatesDownloader(remotePointService, allSessions);
-        this.mechanic = new Mechanics(allSessions);
+        this.updatesDownloader = new UpdatesDownloader(allSessions, remotePointService);
+        this.mechanic = new Mechanics(allSessions, remotePointService);
 
         LOGGER.info("Bot successfully configured.");
     }

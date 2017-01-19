@@ -32,7 +32,7 @@ public class UpdatesDownloader implements Runnable {
     private static final String GET_UPDATES = "getUpdates";
     private static final String OFFSET = "offset";
 
-    public UpdatesDownloader(RemotePointService remotePointService, ArrayList<BotSession> allSessions) {
+    public UpdatesDownloader(ArrayList<BotSession> allSessions, RemotePointService remotePointService) {
         this.remotePointService = remotePointService;
         this.allSessions = allSessions;
     }

@@ -43,6 +43,7 @@ public class RemotePointService {
             return null;
         }
         final URL url = uri.toURL();
+
         final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
 
@@ -56,6 +57,7 @@ public class RemotePointService {
             }
             in.close();
         }
+
         return response.toString();
     }
 }
