@@ -4,9 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-/**
- * Created by kirrok on 17.01.17.
- */
 public class MessageParser {
     private static final Logger LOGGER = LogManager.getLogger(MessageParser.class);
     private ObjectMapper mapper = new ObjectMapper();

@@ -15,10 +15,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Created by kirrok on 17.01.17.
- */
-
 public class UpdatesDownloader implements Runnable {
     private static final Logger LOGGER = LogManager.getLogger(UpdatesDownloader.class);
     private static final int STEP_TIME = 50;
@@ -27,10 +23,8 @@ public class UpdatesDownloader implements Runnable {
     private HashMap<Integer, BotSession> mapSessionIdToUpdates = new HashMap<>();
 
     private RemotePointService remotePointService;
-    private final MessageParser parser = new MessageParser();
 
     private static final String GET_UPDATES = "getUpdates";
-    private static final String OFFSET = "offset";
 
     public UpdatesDownloader(ArrayList<BotSession> allSessions, RemotePointService remotePointService) {
         this.remotePointService = remotePointService;
@@ -39,7 +33,7 @@ public class UpdatesDownloader implements Runnable {
 
     @Override
     public void run() {
-        LOGGER.info("RUN UPD_DOWNLOADER");
+        LOGGER.info("RUN UPDATES_DOWNLOADER");
         Integer lasId = null;
         while (true) {
             final long beginTime = System.currentTimeMillis();
@@ -68,7 +62,7 @@ public class UpdatesDownloader implements Runnable {
             successUpdateMessage = new ObjectMapper().
                     readValue(remotePointService.sendGet(GET_UPDATES, keyToValue), SuccessUpdateMessage.class);
         } catch (IOException e) {
-            LOGGER.info("Errow while getResult , {}", e);
+            LOGGER.info("Error while getResult , {}", e);
         }
         int maxUpdateId = 0;
 

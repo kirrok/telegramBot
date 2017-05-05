@@ -1,0 +1,18 @@
+hikari:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    jdbcUrl: jdbc:postgresql://localhost:5432/stoloto_news888
+    username: postgres
+    password: 1234
+    maximumPoolSize: 5
+    dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
+    dialect: org.hibernate.dialect.PostgreSQL9Dialect
+    hbm2dll: update
+    showSql: false
+    autoCommit: false
+
+bot:
+  executor:
+    threadNum: 2
+  token: 249321483:AAGeX2H9tgtnSQ3HjAtn__RTB6ftPl0lPYI/
+  url: api.telegram.org/bot

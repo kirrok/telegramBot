@@ -16,19 +16,16 @@ import java.util.concurrent.Executors;
 public class TestLongPoolingBot {
     private static final Logger LOGGER = LogManager.getLogger(TestLongPoolingBot.class);
 
-    private final RemotePointService remotePointService;
     private final UpdatesDownloader updatesDownloader;
     private final Mechanics mechanic;
 
-    private final ArrayList<BotSession> allSessions = new ArrayList<>();
-    private final String token;
     private final Executor executor;
 
 
     public TestLongPoolingBot(DefaultBotConfig botConfig) {
-        this.token = botConfig.getToken();
         this.executor = Executors.newFixedThreadPool(botConfig.getThreadNumber());
-        this.remotePointService = new RemotePointService(botConfig.getBaseUrl(), botConfig.getToken());
+        RemotePointService remotePointService = new RemotePointService(botConfig.getBaseUrl(), botConfig.getToken());
+        ArrayList<BotSession> allSessions = new ArrayList<>();
         this.updatesDownloader = new UpdatesDownloader(allSessions, remotePointService);
         this.mechanic = new Mechanics(allSessions, remotePointService);
 

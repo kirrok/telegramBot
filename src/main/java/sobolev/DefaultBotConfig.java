@@ -5,9 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-/**
- * Created by kirrok on 17.01.17.
- */
 public class DefaultBotConfig {
 
     final Properties botProps;
@@ -15,8 +12,7 @@ public class DefaultBotConfig {
     {
         botProps = new Properties();
         try {
-            botProps.load(new FileInputStream(new File("/home/kirrok/workspace/TestBot/src/main/resources/application.properties")));
-
+            botProps.load(new FileInputStream(new File("src/main/resources/application.properties")));
         } catch (IOException e) {
             e.printStackTrace();
         }

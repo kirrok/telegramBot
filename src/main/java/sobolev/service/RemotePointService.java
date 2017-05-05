@@ -25,10 +25,6 @@ public class RemotePointService {
         REMOTE_URL = baseUrl + token;
     }
 
-    public String sendGet(String methodName) throws IOException {
-        return sendGet(methodName, null);
-    }
-
     public String sendGet(String methodName, HashMap<String, String> parametersToValues) throws IOException {
         URI uri;
         try {

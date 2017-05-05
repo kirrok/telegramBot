@@ -5,9 +5,6 @@ import sobolev.message.UpdateMessage;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-/**
- * Created by kirrok on 17.01.17.
- */
 public class BotSession {
     private final Integer id;
     private Queue<UpdateMessage> updates = new ConcurrentLinkedQueue<>();

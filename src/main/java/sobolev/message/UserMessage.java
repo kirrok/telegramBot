@@ -1,11 +1,11 @@
 package sobolev.message;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
-/**
- * Created by kirrok on 17.01.17.
- */
+@Data
 public class UserMessage {
+
     private int id;
     @JsonProperty(value = "first_name")
     private String firstName;
@@ -13,35 +13,4 @@ public class UserMessage {
     private String lastName;
     private String username;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getUsername() {
-        return username;
-    }
 }
