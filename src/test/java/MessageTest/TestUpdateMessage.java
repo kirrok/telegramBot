@@ -2,16 +2,13 @@ package MessageTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
-import sobolev.message.SuccessUpdateMessage;
+import sobolev.message.ResponseMessage;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-/**
- * Created by kirrok on 17.01.17.
- */
 public class TestUpdateMessage {
 
     @Test
@@ -19,7 +16,7 @@ public class TestUpdateMessage {
         String jsonData = new String(Files.readAllBytes(Paths.get("src/test/resources/messages/UpdateMessage.json")));
 
         final ObjectMapper mapper = new ObjectMapper();
-        final SuccessUpdateMessage message = mapper.readValue(jsonData, SuccessUpdateMessage.class);
+        final ResponseMessage message = mapper.readValue(jsonData, ResponseMessage.class);
 
         final StringWriter json = new StringWriter();
         mapper.writeValue(json, message);

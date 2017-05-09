@@ -7,7 +7,7 @@ import lombok.Data;
 public class UpdateMessage {
 
     @JsonProperty("update_id")
-    private int updateId;
+    private Integer updateId;
     private Message message;
 
 }

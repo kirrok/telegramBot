@@ -12,7 +12,4 @@ hikari:
     autoCommit: false
 
 bot:
-  executor:
-    threadNum: 2
-  token: 249321483:AAGeX2H9tgtnSQ3HjAtn__RTB6ftPl0lPYI/
-  url: api.telegram.org/bot
+  url: https://api.telegram.org/bot249321483:AAGeX2H9tgtnSQ3HjAtn__RTB6ftPl0lPYI

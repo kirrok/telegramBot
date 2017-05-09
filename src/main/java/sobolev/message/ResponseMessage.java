@@ -8,10 +8,11 @@ import java.util.List;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SuccessUpdateMessage {
+public class ResponseMessage<T> {
 
     private boolean ok;
     @JsonProperty("result")
-    private List<UpdateMessage> result;
-
+    private T result;
+    private String description;
+    private Integer error_code;
 }

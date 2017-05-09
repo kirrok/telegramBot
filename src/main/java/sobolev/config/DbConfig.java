@@ -35,6 +35,7 @@ public class DbConfig extends HikariConfig {
         System.out.println(getJdbcUrl());
         return dataSource;
     }
+
     @Bean
     public LocalSessionFactoryBean localSessionFactoryBean() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();

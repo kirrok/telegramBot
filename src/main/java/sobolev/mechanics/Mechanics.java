@@ -1,10 +1,12 @@
 package sobolev.mechanics;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 import sobolev.BotSession;
 import sobolev.message.UpdateMessage;
-import sobolev.service.RemotePointService;
+import sobolev.service.RemotePointServiceImpl;
 import sobolev.utils.TimeHelper;
 
 import java.io.IOException;
@@ -12,45 +14,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Queue;
 
-/**
- * Created by kirrok on 17.01.17.
- */
+@Slf4j
+@Component
+public class Mechanics {
 
-public class Mechanics implements Runnable {
-    private static final Logger LOGGER = LogManager.getLogger(Mechanics.class);
     private final ArrayList<BotSession> allSessions;
-    private static final int STEP_TIME = 50;
-    private final RemotePointService remotePointService;
+    private final RemotePointServiceImpl remotePointService;
 
-
-    public Mechanics(ArrayList<BotSession> allSessions, RemotePointService remotePointService) {
+    public Mechanics(ArrayList<BotSession> allSessions, RemotePointServiceImpl remotePointService) {
         this.allSessions = allSessions;
         this.remotePointService = remotePointService;
     }
 
-    @Override
-    public void run() {
-        LOGGER.info("RUN MECHANICS");
-        while (true) {
-            final long beginTime = System.currentTimeMillis();
-            step();
-            final long endTime = System.currentTimeMillis();
-            if (endTime - beginTime < STEP_TIME) {
-                TimeHelper.goSleep(STEP_TIME - endTime + beginTime);
-            }
-        }
-    }
-
-    private void step() {
-        for (BotSession session : allSessions) {
-            final Queue<UpdateMessage> updates = session.getUpdates();
-            for (UpdateMessage update : updates) {
+    public void step() {
+        System.out.println("Mechanics.step");
+        allSessions.forEach(session -> {
+            Queue<UpdateMessage> updates = session.getUpdates();
+            updates.forEach(update -> {
                 final String message = parseMessageAndSendForAll(update);
-                LOGGER.info("Sesssion id: " + session.getId() + "   message: " + message.toString());
+                log.info("Session id: " + session.getId() + "   message: " + message);
                 updates.remove(update);
-
-            }
-        }
+            });
+        });
     }
 
     private String parseMessageAndSendForAll(UpdateMessage update) {
@@ -67,20 +52,16 @@ public class Mechanics implements Runnable {
         messageToSendBuilder.append(" : ");
         messageToSendBuilder.append(update.getMessage().getText());
 
-        for (BotSession sessionToSendMsg : allSessions) {
+        allSessions.forEach(session -> {
             final HashMap<String, String> keyToValueParams = new HashMap<>();
-            keyToValueParams.put("chat_id", String.valueOf(sessionToSendMsg.getId()));
+            keyToValueParams.put("chat_id", String.valueOf(session.getId()));
             keyToValueParams.put("text", messageToSendBuilder.toString());
 
-            if (sessionToSendMsg.getId() != update.getMessage().getChat().getId()) {
-                try {
-                    remotePointService.sendGet("sendMessage", keyToValueParams);
-                } catch (IOException e) {
-                    LOGGER.warn("Error while sending message to session, {}", e);
-                }
+            if (session.getId() != update.getMessage().getChat().getId()) {
+                remotePointService.callMethod("/sendMessage", keyToValueParams);
             }
+        });
 
-        }
         return messageToSendBuilder.toString();
     }
 }
