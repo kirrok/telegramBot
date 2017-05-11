@@ -1,5 +1,6 @@
 package sobolev.mechanics;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -30,10 +31,12 @@ public class UpdatesDownloadingTask {
     public void getUpdates() {
         System.out.println("UpdatesDownloadingTask.getUpdates");
         ResponseMessage<List<UpdateMessage>> response = remotePointService.getUpdates(lastId);
+
         if (response.isOk()) {
             response.getResult()
                 .stream()
                 .map(update -> {
+                    new ObjectMapper().convertValue(update, UpdateMessage.class);
                     int sessionId = update.getMessage().getFrom().getId();
                     if (!mapSessionIdToUpdates.containsKey(sessionId)) {
                         BotSession botSession = new BotSession(sessionId);
@@ -44,10 +47,12 @@ public class UpdatesDownloadingTask {
                     return update.getUpdateId();
                 })
                 .max(Comparator.comparingInt(o -> o))
-                .ifPresent(integer -> lastId = integer);
+                .ifPresent(integer -> lastId = integer + 1);
         } else {
-            log.error("Error requesting get updages: {}", response.getDescription());
+            log.error("Error requesting get updates: {}", response.getDescription());
         }
 
     }
 }
+
+

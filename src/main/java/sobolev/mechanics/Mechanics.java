@@ -39,6 +39,7 @@ public class Mechanics {
     }
 
     private String parseMessageAndSendForAll(UpdateMessage update) {
+        System.out.println("Mechanics.parseMessageAndSendForAll");
         final StringBuilder messageToSendBuilder = new StringBuilder();
         final String firstName = update.getMessage().getFrom().getFirstName();
         if (firstName != null) {
@@ -53,12 +54,12 @@ public class Mechanics {
         messageToSendBuilder.append(update.getMessage().getText());
 
         allSessions.forEach(session -> {
-            final HashMap<String, String> keyToValueParams = new HashMap<>();
-            keyToValueParams.put("chat_id", String.valueOf(session.getId()));
-            keyToValueParams.put("text", messageToSendBuilder.toString());
+            final HashMap<String, String> uriVar = new HashMap<>();
+            uriVar.put("chat_id", String.valueOf(session.getId()));
+            uriVar.put("text", messageToSendBuilder.toString());
 
             if (session.getId() != update.getMessage().getChat().getId()) {
-                remotePointService.callMethod("/sendMessage", keyToValueParams);
+                remotePointService.callMethod("/sendMessage?chat_id={chat_id}&text={text}", uriVar);
             }
         });
 

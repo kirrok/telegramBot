@@ -26,13 +26,11 @@ public class DbConfig extends HikariConfig {
 
     @Bean
     public DataSource dataSourse() {
-        System.out.println(getDriverClassName());
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName(getDriverClassName());
         dataSource.setUrl(getJdbcUrl());
         dataSource.setUsername(getUsername());
         dataSource.setPassword(getPassword());
-        System.out.println(getJdbcUrl());
         return dataSource;
     }
 
