@@ -1,8 +1,6 @@
 package betBot.service;
 
-import betBot.model.ResponseMessage;
-import betBot.model.UpdateMessage;
-import betBot.model.User;
+import betBot.model.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,4 +11,5 @@ public interface TelegramApiClient {
 
     void sendMessage(String text, User to);
 
+    ResponseMessage<Message> sendPhoto(PhotoSize photo, User to);
 }

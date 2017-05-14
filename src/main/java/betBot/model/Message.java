@@ -18,5 +18,6 @@ public class Message {
     private String date;
     private String text;
     private List<Entity> entities;
+    private List<PhotoSize> photo;
 
 }

@@ -48,6 +48,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean isAdmin(User user) {
+        return rootLogin.equals(user.getLogin());
+    }
+
+    @Override
     public void addUserLogin(String login) {
         userLogin2User.put(login, null);
     }

@@ -1,6 +1,6 @@
 package betBot.service;
 
-import betBot.model.User;
+import betBot.model.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -9,8 +9,6 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import betBot.model.ResponseMessage;
-import betBot.model.UpdateMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -61,4 +59,18 @@ public class TelegramApiClientImpl implements TelegramApiClient {
                 put("text", text);
             }});
     }
+
+    @Override
+    public ResponseMessage<Message> sendPhoto(PhotoSize photo, User to) {
+        return restTemplate.exchange("/sendPhoto?chat_id={to}&photo={photo}",
+            HttpMethod.GET,
+            null,
+            new ParameterizedTypeReference<ResponseMessage<Message>>() {
+            }, new HashMap<String, Object>() {{
+                put("to", to.getId());
+                put("photo", photo.getFileId());
+            }}).getBody();
+    }
+
+
 }

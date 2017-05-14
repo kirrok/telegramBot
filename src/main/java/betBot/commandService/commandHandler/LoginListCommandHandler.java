@@ -46,3 +46,7 @@ public class LoginListCommandHandler implements CommandHandler {
         }
     }
 }
+
+//https://api.telegram.org/bot249321483:AAGeX2H9tgtnSQ3HjAtn__RTB6ftPl0lPYI/getUpdates
+//https://api.telegram.org/bot249321483:AAGeX2H9tgtnSQ3HjAtn__RTB6ftPl0lPYI/getFile?file_id=AgADAgAD4qcxG_YywUgG39aK36d39TZStw0ABB8E425JbZUybUEDAAEC
+//https://api.telegram.org/files/bot249321483:AAGeX2H9tgtnSQ3HjAtn__RTB6ftPl0lPYI/photos/file_4.jpg

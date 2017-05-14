@@ -15,6 +15,8 @@ public interface UserService {
 
     Map<String, User> getLogin2UserMap();
 
+    boolean isAdmin(User user);
+
     /**
      * Attempts to add new user login. If such login already exists returns status of login.
      *
