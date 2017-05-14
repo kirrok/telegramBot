@@ -28,7 +28,7 @@ public class UserListCommandHandler implements CommandHandler {
         if (user.getRole().equals(UserRole.ADMIN)) {
             String response = userService.getAll()
                 .stream()
-                .map(u -> u.getFirstName() + " " + u.getLastName() + " " + u.getRole().value() + " " + u.getLogin())
+                .map(u -> u.getFirstName() + " " + u.getLastName() + ": " + u.getRole().value() + " " + u.getLogin())
                 .collect(Collectors.joining("\n", "", ""));
             telegramApiClient.sendMessage(response, user);
         } else {

@@ -17,13 +17,6 @@ public interface UserService {
 
     boolean isAdmin(User user);
 
-    /**
-     * Attempts to add new user login. If such login already exists returns status of login.
-     *
-     * @param login
-     * @return false - login is already taken
-     * true - login is free
-     */
     void addUserLogin(String login);
 
     void login(User user, String login);
