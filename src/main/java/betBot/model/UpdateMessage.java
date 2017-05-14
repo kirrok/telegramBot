@@ -1,4 +1,4 @@
-package sobolev.message;
+package betBot.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.Data;
 public class UpdateMessage {
 
     @JsonProperty("update_id")
-    private Integer updateId;
+    private int updateId;
     private Message message;
 
 }

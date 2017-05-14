@@ -1,4 +1,4 @@
-package sobolev.config;
+package betBot.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,10 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.*;
-import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.web.client.AsyncRestTemplate;
 import org.springframework.web.client.RestTemplate;
-import sobolev.BotSession;
+import betBot.session.Session;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,10 +33,5 @@ public class ApplicationConfig {
 
         }));
         return restTemplate;
-    }
-
-    @Bean
-    public ArrayList<BotSession> botSessions() {
-        return new ArrayList<>();
     }
 }

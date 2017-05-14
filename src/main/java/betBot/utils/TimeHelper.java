@@ -1,4 +1,4 @@
-package sobolev.utils;
+package betBot.utils;
 
 import static java.lang.Thread.sleep;
 

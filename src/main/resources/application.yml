@@ -13,3 +13,5 @@ hikari:
 
 bot:
   url: https://api.telegram.org/bot249321483:AAGeX2H9tgtnSQ3HjAtn__RTB6ftPl0lPYI
+  security:
+    login: rubibablo

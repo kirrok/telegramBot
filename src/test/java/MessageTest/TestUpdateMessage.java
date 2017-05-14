@@ -2,7 +2,7 @@ package MessageTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
-import sobolev.message.ResponseMessage;
+import betBot.model.ResponseMessage;
 
 import java.io.IOException;
 import java.io.StringWriter;

@@ -1,7 +1,6 @@
-package sobolev.config;
+package betBot.config;
 
 import com.zaxxer.hikari.HikariConfig;
-import lombok.Data;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

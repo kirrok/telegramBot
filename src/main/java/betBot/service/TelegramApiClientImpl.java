@@ -1,5 +1,6 @@
-package sobolev.service;
+package betBot.service;
 
+import betBot.model.User;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -8,8 +9,8 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import sobolev.message.ResponseMessage;
-import sobolev.message.UpdateMessage;
+import betBot.model.ResponseMessage;
+import betBot.model.UpdateMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,27 +18,15 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service
-public class RemotePointServiceImpl implements RemotePointService {
+public class TelegramApiClientImpl implements TelegramApiClient {
 
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
 
     @Autowired
-    public RemotePointServiceImpl(RestTemplate restTemplate, ObjectMapper objectMapper) {
+    public TelegramApiClientImpl(RestTemplate restTemplate, ObjectMapper objectMapper) {
         this.restTemplate = restTemplate;
         this.objectMapper = objectMapper;
-    }
-
-    @Override
-    public <T> ResponseMessage<T> callMethod(String methodName, HashMap<String, ?> uriVariables) {
-        return restTemplate.exchange(
-            methodName,
-            HttpMethod.GET,
-            null,
-            new ParameterizedTypeReference<ResponseMessage<T>>() {
-            },
-            uriVariables
-        ).getBody();
     }
 
     @Override
@@ -63,5 +52,13 @@ public class RemotePointServiceImpl implements RemotePointService {
             }}
         );
     }
-}
 
+    @Override
+    public void sendMessage(String text, User to) {
+        restTemplate.getForEntity("/sendMessage?chat_id={to}&text={text}", String.class,
+            new HashMap<String, Object>() {{
+                put("to", to.getId());
+                put("text", text);
+            }});
+    }
+}

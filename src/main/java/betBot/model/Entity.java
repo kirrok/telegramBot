@@ -1,4 +1,4 @@
-package sobolev.message;
+package betBot.model;
 
 import lombok.Data;
 
